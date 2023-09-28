@@ -18,6 +18,31 @@ code {
   @apply font-bold;
 }
 
+ol {
+  @apply list-inside list-decimal;
+}
+
+ol,
+ul {
+  @apply space-y-2;
+}
+
+li > p {
+  @apply inline;
+}
+
+li:first-child {
+  @apply mt-8;
+}
+
+li:last-child {
+  @apply mb-8;
+}
+
+li::marker {
+  @apply text-gray-400;
+}
+
 button:disabled {
   opacity: 0.5;
 }

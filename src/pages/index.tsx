@@ -118,7 +118,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="absolute bottom-0 left-0 h-36 w-full bg-gradient-to-t from-zinc-700 to-[#00000000]"></div>
+          <div className="absolute bottom-0 left-0 h-28 w-full bg-gradient-to-t from-zinc-700 to-[#00000000]"></div>
           <section className="absolute bottom-12 w-full max-w-3xl">
             <form
               onSubmit={handleSubmit(onSubmit)}
