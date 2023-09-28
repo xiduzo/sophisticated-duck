@@ -5,7 +5,7 @@ export const client = new ChatGPTAPI({
   apiKey: env.OPENAI_API_KEY,
   completionParams: {
     temperature: 1,
-    max_tokens: 500,
+    max_tokens: 10000,
     frequency_penalty: 0.2,
     presence_penalty: 0.6,
   },
