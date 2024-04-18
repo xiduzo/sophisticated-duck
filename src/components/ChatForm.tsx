@@ -62,10 +62,7 @@ export function ChatForm({ isLoading, conversationId, onSubmit }: Props) {
   }, []);
 
   return (
-    <form
-      onSubmit={void handleSubmit(preSubmit)}
-      className="relative z-10 flex"
-    >
+    <form onSubmit={handleSubmit(preSubmit)} className="relative z-10 flex">
       <fieldset className="hidden">
         <input {...register("parentMessageId")} />
         <input {...register("conversationId")} value={conversationId ?? ""} />
