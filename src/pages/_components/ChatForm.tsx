@@ -59,34 +59,29 @@ export function ChatForm({ isLoading, conversationId, onSubmit }: Props) {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit(preSubmit)} className="z-10 flex">
-      <fieldset>
-        <input {...register("parentMessageId")} className="hidden" />
-        <input
-          {...register("conversationId")}
-          value={conversationId ?? ""}
-          className="hidden"
-        />
-        <input
-          {...register("id")}
-          value={crypto.randomUUID()}
-          className="hidden"
-        />
-        <input {...register("role")} value="user" className="hidden" />
+    <form onSubmit={handleSubmit(preSubmit)} className="relative z-10 flex">
+      <fieldset className="hidden">
+        <input {...register("parentMessageId")} />
+        <input {...register("conversationId")} value={conversationId ?? ""} />
+        <input {...register("id")} value={crypto.randomUUID()} />
+        <input {...register("role")} value="user" />
       </fieldset>
-      <fieldset className="flex grow" ref={textareaRef}>
+      <fieldset
+        className="flex grow items-center space-x-4 rounded-xl bg-stone-500 shadow-md"
+        ref={textareaRef}
+      >
         <textarea
           autoFocus
           placeholder={questionToPose.current}
           tabIndex={0}
           rows={rows}
           {...register("text")}
-          className="grow rounded-xl bg-stone-500 p-3 pr-16 shadow-md"
+          className="grow resize-none rounded-xl bg-transparent p-4 pr-12"
         />
         <button
           ref={submitRef}
           disabled={isLoading}
-          className="absolute bottom-2 right-2 rounded-xl bg-green-600 p-2 transition-all duration-150 disabled:bg-gray-500"
+          className="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-xl bg-green-600 transition-all duration-150 disabled:bg-gray-500"
         >
           <PaperAirplaneIcon className="h-4 w-4" />
         </button>

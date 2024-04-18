@@ -58,7 +58,6 @@ export function CodeCopyBtn({ children }: React.PropsWithChildren) {
 
   const handleClick = () => {
     if (copied) return;
-    console.log(children);
     navigator.clipboard.writeText((children as any)?.props?.children);
     setCopied(true);
 

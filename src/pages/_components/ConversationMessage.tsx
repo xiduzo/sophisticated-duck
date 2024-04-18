@@ -1,7 +1,12 @@
 import { ChatMessage } from "chatgpt";
+import { memo } from "react";
 import { MarkdownWithFormatting } from "./MarkdownWithFormatting";
 
-export function ConversationMessage({ message, index, isLoading }: Props) {
+export const ConversationMessage = memo(function ConversationMessage({
+  message,
+  index,
+  isLoading,
+}: Props) {
   return (
     <div
       className={`flex w-full justify-center py-5 ${
@@ -9,7 +14,7 @@ export function ConversationMessage({ message, index, isLoading }: Props) {
       }`}
     >
       <div className="flex max-w-3xl grow space-x-3">
-        <div className={`${isLoading ? "animate-spin " : ""}text-3xl`}>
+        <div className={`${isLoading ? "animate-pulse " : ""}text-3xl`}>
           {message.role === "user" ? "👤" : "🦆"}
         </div>
         <section className="grow overflow-hidden">
@@ -18,7 +23,7 @@ export function ConversationMessage({ message, index, isLoading }: Props) {
       </div>
     </div>
   );
-}
+});
 
 interface Props {
   message: Pick<ChatMessage, "role" | "text">;
