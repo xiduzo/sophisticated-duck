@@ -4,8 +4,8 @@ import React, { useCallback, useRef, useState } from "react";
 
 import { api } from "~/utils/api";
 
-import { ChatForm } from "./_components/ChatForm";
-import { ConversationMessage } from "./_components/ConversationMessage";
+import { ChatForm } from "../components/ChatForm";
+import { ConversationMessage } from "../components/ConversationMessage";
 
 export default function Home() {
   const { mutateAsync, isLoading } = api.example.askQuestion.useMutation();
