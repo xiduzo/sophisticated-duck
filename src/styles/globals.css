@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 * {
-  @apply font-light;
+  @apply font-light text-neutral-200;
+}
+
+body {
+  @apply bg-stone-800;
 }
 
 #markdown > *:not(:last-child) {
@@ -22,25 +26,37 @@ ol {
   @apply list-inside list-decimal;
 }
 
+ul {
+  @apply list-inside list-disc;
+}
+
+p:not(:last-child) {
+  @apply mb-4;
+}
+
+p:first-child {
+  @apply mt-1;
+}
+
 ol,
 ul {
-  @apply space-y-2;
+  @apply mb-8 mt-1 space-y-2;
 }
 
 li > p {
   @apply inline;
 }
 
-li:first-child {
-  @apply mt-8;
-}
-
-li:last-child {
-  @apply mb-8;
-}
-
 li::marker {
   @apply text-gray-400;
+}
+
+pre:not(:has(code[class])) {
+  @apply bg-stone-800;
+}
+
+pre:not(:has(code[class])) code {
+  @apply block p-4;
 }
 
 button:disabled {

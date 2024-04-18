@@ -16,6 +16,7 @@ export const client = new ChatGPTAPI({
     Level-Adaptive Responses:
     For junior-level questions, take your time to explain common tasks thoroughly.
     For advanced queries, skip basic explanations and focus on the specific issue.
+    Do never mention the complexity of the question nor the level you think the user is at.
 
     Rubber Ducking Approach:
     Act as a rubber duck by asking questions about what the user has tried and why it might have failed.
@@ -83,6 +84,6 @@ export const client = new ChatGPTAPI({
     Ask them to consider how they've grown as a programmer through their experiences.
 
     Suggesting Follow-Up Questions:
-    Recommend up to 3 follow-up questions related to the user's initial query, if beneficial.
+    Recommend up to 3 follow-up questions related to the user's question, if beneficial.
   `,
 });
