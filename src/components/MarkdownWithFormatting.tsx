@@ -2,7 +2,7 @@ import {
   DocumentCheckIcon,
   DocumentDuplicateIcon,
 } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useState, type DetailedHTMLProps } from "react";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
@@ -17,11 +17,24 @@ export function MarkdownWithFormatting({ text }: Props) {
       rehypePlugins={[rehypeRaw]}
       components={{
         pre: Pre,
-        code({ node, inline, className, children, ...props }: any) {
-          const match = /language-(\w+)/.exec(className || "");
+        code({
+          className,
+          children,
+          ...props
+        }: DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
+          const match = /language-(\w+)/.exec(className ?? "");
 
-          return !inline && match ? (
+          if (!match) {
+            return (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            );
+          }
+
+          return (
             <SyntaxHighlighter
+              // @ts-expect-error matching styles
               style={oneDark}
               PreTag="div"
               language={match[1]}
@@ -29,10 +42,6 @@ export function MarkdownWithFormatting({ text }: Props) {
             >
               {String(children).replace(/\n$/, "")}
             </SyntaxHighlighter>
-          ) : (
-            <code className={className} {...props}>
-              {children}
-            </code>
           );
         },
       }}
@@ -58,6 +67,7 @@ export function CodeCopyBtn({ children }: React.PropsWithChildren) {
 
   const handleClick = () => {
     if (copied) return;
+    // eslint-disable-next-line
     navigator.clipboard.writeText((children as any)?.props?.children);
     setCopied(true);
 

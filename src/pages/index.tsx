@@ -1,4 +1,4 @@
-import { ChatMessage } from "chatgpt";
+import { type ChatMessage } from "chatgpt";
 import Head from "next/head";
 import React, { useCallback, useRef, useState } from "react";
 
@@ -42,7 +42,7 @@ export default function Home() {
 
       return response;
     },
-    [mutateAsync, setConversation, scrollToBottom],
+    [mutateAsync, addChatMessage],
   );
 
   return (

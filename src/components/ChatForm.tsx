@@ -1,5 +1,5 @@
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
-import { ChatMessage } from "chatgpt";
+import { type ChatMessage } from "chatgpt";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -14,7 +14,7 @@ export function ChatForm({ isLoading, conversationId, onSubmit }: Props) {
 
   const textLength = watch("text")?.length ?? 0;
 
-  async function preSubmit(data: ChatMessage) {
+  function preSubmit(data: ChatMessage) {
     const text = data.text.trim().length ? data.text : questionToPose.current;
     if (!text) return;
 
@@ -23,9 +23,12 @@ export function ChatForm({ isLoading, conversationId, onSubmit }: Props) {
       .at(0);
 
     reset();
-    const response = await onSubmit({ ...data, text });
-    setValue("parentMessageId", response.id);
-    setFocus("text");
+    onSubmit({ ...data, text })
+      .then((response) => {
+        setValue("parentMessageId", response.id);
+        setFocus("text");
+      })
+      .catch(console.error);
   }
 
   useEffect(() => {
@@ -59,7 +62,10 @@ export function ChatForm({ isLoading, conversationId, onSubmit }: Props) {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit(preSubmit)} className="relative z-10 flex">
+    <form
+      onSubmit={void handleSubmit(preSubmit)}
+      className="relative z-10 flex"
+    >
       <fieldset className="hidden">
         <input {...register("parentMessageId")} />
         <input {...register("conversationId")} value={conversationId ?? ""} />

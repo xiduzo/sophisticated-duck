@@ -1,4 +1,4 @@
-import { ChatMessage } from "chatgpt";
+import { type ChatMessage } from "chatgpt";
 import { memo } from "react";
 import { MarkdownWithFormatting } from "./MarkdownWithFormatting";
 

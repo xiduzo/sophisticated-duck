@@ -23,10 +23,7 @@ const config = {
       },
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-    "@typescript-eslint/no-misused-promises": [
-      "error",
-      { checksVoidReturningArgument: false },
-    ],
+    "@typescript-eslint/no-misused-promises": "error",
   },
 };
 
