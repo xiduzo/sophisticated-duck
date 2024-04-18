@@ -17,6 +17,11 @@ export const exampleRouter = createTRPCRouter({
         conversationId: input.conversationId,
         parentMessageId: input.parentMessageId,
         timeoutMs: 1000 * 60,
+        // https://github.com/trpc/trpc/pull/4911
+        // onProgress: (progress) => {
+        //   console.log("Progress", progress);
+        // },
+        // stream: true,
       });
     }),
 });

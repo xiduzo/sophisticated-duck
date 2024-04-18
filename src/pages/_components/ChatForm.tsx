@@ -39,7 +39,7 @@ export function ChatForm({ isLoading, conversationId, onSubmit }: Props) {
     const size = textareaRef.current?.getBoundingClientRect();
     if (!size) return;
     const { width } = size;
-    const charactersPer100px = 11;
+    const charactersPer100px = 14;
     const charactersPerRow = Math.floor(width / 100) * charactersPer100px;
     setRows(Math.min(7, Math.max(1, Math.ceil(textLength / charactersPerRow))));
   }, [textLength]);
@@ -76,7 +76,7 @@ export function ChatForm({ isLoading, conversationId, onSubmit }: Props) {
           tabIndex={0}
           rows={rows}
           {...register("text")}
-          className="grow resize-none rounded-xl bg-transparent p-4 pr-12"
+          className="grow resize-none rounded-xl bg-transparent p-3 pr-12"
         />
         <button
           ref={submitRef}

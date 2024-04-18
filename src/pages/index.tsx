@@ -24,18 +24,21 @@ export default function Home() {
     }, 150);
   }, []);
 
+  const addChatMessage = useCallback(
+    (message: ChatMessage) => {
+      setConversation((prev) => [...prev, message]);
+      scrollToBottom();
+    },
+    [scrollToBottom],
+  );
+
   const handleSubmit = useCallback(
     async (data: ChatMessage) => {
-      console.log("Sending", { data });
-
-      setConversation((prev) => [...prev, data]);
-      scrollToBottom();
+      addChatMessage(data);
 
       const response = await mutateAsync(data);
 
-      setConversation((prev) => [...prev, response]);
-
-      scrollToBottom();
+      addChatMessage(response);
 
       return response;
     },
